@@ -1,5 +1,5 @@
 import { initializeApp} from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
@@ -22,11 +22,10 @@ const firebaseConfig = {
 
   const auth = getAuth(app);
   const db = getFirestore(app);
-  const createAcc = createUserWithEmailAndPassword();
   const storage = getStorage(app);
 
   //update firestore settings
   // db.settings({ timestampsInSnapshots: true})
 
 
-  export {auth, createAcc, db, storage}
+  export {auth, db, storage}
