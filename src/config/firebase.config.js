@@ -1,7 +1,12 @@
-import * as firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/storage';
+import  firebase from 'firebase/compat/app';
+import {} from 'firebase/compat/auth';
+import {} from 'firebase/compat/database';
+import {} from 'firebase/compat/firestore';
+import {} from 'firebase/compat/storage';
+// export const firestore = firebase.firestore();
+// import { initializeApp } from 'firebase/app';
+// import { getFirestore } from 'firebase/firestore/lite';
+// import { getStorage } from "firebase/storage";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -14,10 +19,22 @@ const firebaseConfig = {
     measurementId: "G-K6R3PD2W1F"
   };
 
-  firebase.InitialializeApp(firebaseConfig);
+  // Get a list of cities from your database
+// async function getCities(db) {
+//   const citiesCol = collection(db, 'cities');
+//   const citySnapshot = await getDocs(citiesCol);
+//   const cityList = citySnapshot.docs.map(doc => doc.data());
+//   return cityList;
+// }
+
+  // const app = initializeApp(firebaseConfig);
+  // const db = getFirestore(app);
+  firebase.initializeApp(firebaseConfig);
 
   const auth = firebase.auth();
   const db = firebase.firestore();
   const storage = firebase.storage();
 
-  exports (auth, db, storage);
+// firebase.app;
+
+  export {auth, db, storage}
