@@ -1,5 +1,8 @@
 import React,{ useState } from 'react';
 import { storage, db} from '../config/firebase.config.js'
+// import { collection } from "firebase/firestore";
+
+// const usersCollectionRef = collection(db, 'users');
 
 export const AddProducts = () => {
 
@@ -22,17 +25,19 @@ export const AddProducts = () => {
         }
     }
 
-    //Add product name && price
+    //Add product form submit event
     const addProduct = (e) => {
         e.preventDefault();
         // console.log(productName, productPrice, productImg);
+        //Storing the image
         const uploadTask = storage.ref(`product-images/${productImg.name}`).put(productImg);
         uploadTask.on('state_changed', snapshot => {
-            const progress = (snapshot.bytesTransfered/snapshot.totalBytes) * 100;
+            const progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
             console.log(progress);
         }, err => {
             setError(err.message);
         }, () => {
+            //Gets product url and if success the storing the product in db
             storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
               db.collection('Products').add({
                 productName: productName,
